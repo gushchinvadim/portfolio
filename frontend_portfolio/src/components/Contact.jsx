@@ -14,7 +14,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/api/contact/', formData);
+      await axios.post('/api/contact/', formData);
       setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setSubmitted(false), 3000);
@@ -46,9 +46,9 @@ const Contact = () => {
             </p>
 
             <div className="space-y-4">
-              <a href="mailto:gushvadim@yandex.ru" className="flex items-center gap-3 text-slate-700 hover:text-primary transition-colors">
+              <a href="mailto:gvedynamics@gmail.com" className="flex items-center gap-3 text-slate-700 hover:text-primary transition-colors">
                 <Mail className="w-5 h-5" />
-                gvedynamics@yandex.ru
+                gvedynamics@gmail.com
               </a>
               {/* <a href="https://github.com/gushchinvadim" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-700 hover:text-primary transition-colors">
                <GitBranch className="w-5 h-5" />

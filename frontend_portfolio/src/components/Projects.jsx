@@ -11,7 +11,7 @@ const Projects = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/projects/')
+    axios.get('/api/projects/')
       .then(response => {
         setProjects(response.data);
         setLoading(false);

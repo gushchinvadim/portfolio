@@ -7,7 +7,7 @@ const TechStack = () => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/skills/')
+    axios.get('/api/skills/')
       .then(response => setSkills(response.data))
       .catch(error => console.error('Error fetching skills:', error));
   }, []);
