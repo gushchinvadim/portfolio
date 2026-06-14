@@ -172,7 +172,7 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
 
-# ==================== СТАТИКА ====================
+# ==================== СТАТИКА И МЕДИА ====================
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -183,11 +183,23 @@ MEDIA_ROOT = BASE_DIR / 'media'
 if not DEBUG:
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
     STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
         "staticfiles": {
             "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
         },
     }
-
+else:
+    # Локально используем стандартное хранилище
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
 # ==================== ЛОГИРОВАНИЕ ====================
 LOGGING = {
     'version': 1,
@@ -211,3 +223,6 @@ LOGGING = {
 }
 
 
+# Максимальный размер загружаемого файла (100 МБ)
+FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100 МБ
+DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100 МБ
